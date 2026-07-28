@@ -2,7 +2,7 @@ const http = require('http');
 const { createClient } = require('redis');
 
 const PORT = process.env.PORT || 3000;
-const REDIS_URL = process.env.REDIS_URL || 'redis://redis:6379';
+const REDIS_URL = process.env.REDIS_URL || 'redis://redis-service:6379';
 const ORDERS_KEY = 'food_ordering_orders';
 
 const menu = [
