@@ -7,6 +7,6 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "redis": "^4.10.0"
+    "redis": "^4.9.0"
   }
 }
