@@ -8,7 +8,9 @@ app.use(express.static(path.join(__dirname)));
 
 app.get('/config.js', (req, res) => {
   res.type('application/javascript');
-  res.send(`window.API_BASE = '${backendUrl.replace(/'/g, "\\'")}';`);
+  const safeUrl = backendUrl.replace(/'/g, "\\'");
+  const apiBase = safeUrl.endsWith('/api') ? safeUrl : safeUrl.replace(/\/$/, '') + '/api';
+  res.send(`window.API_BASE = '${apiBase}';`);
 });
 
 app.get('/health', (req, res) => {
