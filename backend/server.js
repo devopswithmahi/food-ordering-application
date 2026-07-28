@@ -1,11 +1,8 @@
 const http = require('http');
-const fs = require('fs');
-const path = require('path');
 const { createClient } = require('redis');
 
 const PORT = process.env.PORT || 3000;
-const FRONTEND_DIR = path.join(__dirname, '..', 'frontend');
-const REDIS_URL = process.env.REDIS_URL || 'redis://localhost:6379';
+const REDIS_URL = process.env.REDIS_URL || 'redis://redis:6379';
 const ORDERS_KEY = 'food_ordering_orders';
 
 const menu = [
@@ -46,28 +43,6 @@ function sendJson(res, statusCode, payload) {
     'Access-Control-Allow-Headers': 'Content-Type'
   });
   res.end(JSON.stringify(payload));
-}
-
-function serveStaticFile(res, filePath) {
-  const ext = path.extname(filePath).toLowerCase();
-  const contentTypes = {
-    '.html': 'text/html; charset=utf-8',
-    '.css': 'text/css; charset=utf-8',
-    '.js': 'application/javascript; charset=utf-8',
-    '.json': 'application/json; charset=utf-8'
-  };
-
-  const type = contentTypes[ext] || 'application/octet-stream';
-  fs.readFile(filePath, (err, content) => {
-    if (err) {
-      res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
-      res.end('Not found');
-      return;
-    }
-
-    res.writeHead(200, { 'Content-Type': type, 'Cache-Control': 'no-store' });
-    res.end(content);
-  });
 }
 
 function parseBody(req) {
@@ -147,18 +122,8 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
-  if (req.method === 'GET' && (url.pathname === '/' || url.pathname === '/index.html')) {
-    serveStaticFile(res, path.join(FRONTEND_DIR, 'index.html'));
-    return;
-  }
-
-  if (req.method === 'GET' && url.pathname === '/styles.css') {
-    serveStaticFile(res, path.join(FRONTEND_DIR, 'styles.css'));
-    return;
-  }
-
-  if (req.method === 'GET' && url.pathname === '/app.js') {
-    serveStaticFile(res, path.join(FRONTEND_DIR, 'app.js'));
+  if (req.method === 'GET' && url.pathname === '/') {
+    sendJson(res, 200, { status: 'ok', service: 'food-ordering-api', message: 'Backend is running' });
     return;
   }
 

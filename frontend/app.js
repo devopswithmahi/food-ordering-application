@@ -8,10 +8,15 @@ const orderCount = document.getElementById('order-count');
 
 let menu = [];
 let cart = [];
+const API_BASE = window.API_BASE || '/api';
+
+async function apiFetch(path, options) {
+  return fetch(`${API_BASE}${path}`, options);
+}
 
 async function loadMenu() {
   try {
-    const response = await fetch('/api/menu');
+    const response = await apiFetch('/menu');
     menu = await response.json();
     renderMenu();
   } catch (error) {
@@ -21,10 +26,10 @@ async function loadMenu() {
 
 async function loadOrders() {
   try {
-    const response = await fetch('/api/orders');
+    const response = await apiFetch('/orders');
     const orders = await response.json();
     renderOrders(orders);
-    const summaryResponse = await fetch('/api/summary');
+    const summaryResponse = await apiFetch('/summary');
     const summary = await summaryResponse.json();
     orderCount.textContent = `${summary.totalOrders} orders received`;
   } catch (error) {
@@ -121,7 +126,7 @@ placeOrderBtn.addEventListener('click', async () => {
   }
 
   try {
-    const response = await fetch('/api/orders', {
+    const response = await apiFetch('/orders', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
