@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Foodie Express</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header>
+        <h1>Foodie Express</h1>
+        <p>Fresh meals, quick delivery, and happy customers.</p>
+      </header>
+
+      <main class="layout">
+        <section class="panel">
+          <div class="panel-heading">
+            <h2>Featured menu</h2>
+            <span id="order-count">Loading orders...</span>
+          </div>
+          <div id="menu-list" class="menu-list"></div>
+        </section>
+
+        <aside class="panel">
+          <h2>Your order</h2>
+          <label for="customer-name">Customer name</label>
+          <input id="customer-name" placeholder="Enter your name" />
+
+          <div id="cart-items" class="cart-list"></div>
+          <div class="summary">
+            <strong>Total:</strong> <span id="total-price">$0</span>
+          </div>
+          <button id="place-order-btn">Place order</button>
+
+          <div class="history-box">
+            <h3>Recent orders</h3>
+            <div id="order-history" class="history-list"></div>
+          </div>
+        </aside>
+      </main>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,107 @@
+:root {
+  color-scheme: light;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f7f7f7;
+  color: #1d1d1d;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(135deg, #fff4e5, #ffe0b2);
+}
+
+.app-shell {
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+header {
+  margin-bottom: 20px;
+}
+
+header h1 {
+  margin-bottom: 6px;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+.panel {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.panel-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.menu-list, .cart-list, .history-list {
+  display: grid;
+  gap: 12px;
+}
+
+.card {
+  border: 1px solid #e9d5b7;
+  border-radius: 12px;
+  padding: 14px;
+}
+
+.card button,
+#place-order-btn,
+.remove-btn {
+  background: #ff7f50;
+  color: white;
+  border: none;
+  padding: 10px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.remove-btn {
+  background: #d9534f;
+  padding: 6px 10px;
+  margin-top: 6px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0 14px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+}
+
+.summary {
+  margin: 14px 0;
+  font-size: 1.1rem;
+}
+
+.history-box {
+  margin-top: 18px;
+  border-top: 1px solid #eee;
+  padding-top: 14px;
+}
+
+.history-item {
+  font-size: 0.95rem;
+  color: #555;
+  padding: 8px 0;
+  border-bottom: 1px dashed #eee;
+}
+
+@media (max-width: 800px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
