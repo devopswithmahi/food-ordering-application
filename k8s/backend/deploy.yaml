@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  labels:
+    app: backend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: umamaheswaritalupuri/backend:v1
+        ports:
+        - containerPort: 3000
+        env:
+        - name: REDIS_URL
+          value: redis://redis:6379
+
